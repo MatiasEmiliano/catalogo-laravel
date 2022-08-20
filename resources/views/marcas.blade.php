@@ -44,6 +44,6 @@
         @endforeach
 
     </ul>
-    {{$marcas->links()}}
+    {{ $marcas->links() }}
 
 @endsection

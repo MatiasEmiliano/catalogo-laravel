@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useBootstrap(); //Habilita Bootsrap en lugar de Tailwind
+        Paginator::useBootstrapFive(); //Habilita Bootsrap en lugar de Tailwind
     }
 }
