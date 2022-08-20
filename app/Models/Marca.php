@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Marca extends Model
 {
     use HasFactory;
+
+    public $timestamps = false; //desactiva el modo predeterminado de tablas con columnas created y updated.
 }
