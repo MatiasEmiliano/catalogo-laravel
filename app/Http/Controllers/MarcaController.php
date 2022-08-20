@@ -8,7 +8,9 @@ use App\Models\Marca;
 class MarcaController extends Controller
 {
     public function index(){
-        $marcas=Marca::all();
+        //$marcas=Marca::all();
+        //$marcas=Marca::simplePaginate(3); //Paginador de 3 items
+        $marcas=Marca::paginate(3);         //PAginador de 3 items + Flechas
         return view('marcas',['marcas'=>$marcas]);
     }
     public function create(){
@@ -27,6 +29,10 @@ class MarcaController extends Controller
         }
     }
     private function validaForm($request){
-        $request->validate(['mkNombre'=>'required|unique:marcas|min:3|max:10']);
+        $request->validate(['mkNombre'=>'required|unique:marcas|min:3|max:10'],
+            ['mkNombre.required'=>'Este campo es obligatorio',
+            'mkNombre.unique'=>'Esta marca ya existe',
+            'mkNombre.min'=>'Este campo tiene un minimo de 3 caracteres',
+            'mkNombre.max'=>'Este campo un maximo de 10 caracteres']);
     }
 }
