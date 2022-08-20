@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/marcas', [MarcaController::class,'index']);
+Route::get('/marca/create', [MarcaController::class,'create']);

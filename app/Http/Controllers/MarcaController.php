@@ -11,4 +11,7 @@ class MarcaController extends Controller
         $marcas=Marca::all();
         return view('marcas',['marcas'=>$marcas]);
     }
+    public function create(){
+        return view('marcaCreate');
+    }
 }
