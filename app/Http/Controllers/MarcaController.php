@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Marca;
+use Throwable;
 
 class MarcaController extends Controller
 {
@@ -11,11 +12,16 @@ class MarcaController extends Controller
         //$marcas=Marca::all();
         //$marcas=Marca::simplePaginate(3); //Paginador de 3 items
         $marcas=Marca::paginate(3);         //PAginador de 3 items + Flechas
+
         return view('marcas',['marcas'=>$marcas]);
     }
+
+
     public function create(){
         return view('marcaCreate');
     }
+
+
     public function store(Request $request){
         $this->validaForm($request);
         //Validacion OK:
@@ -24,7 +30,7 @@ class MarcaController extends Controller
             $marca->mkNombre = $request->mkNombre;
             $marca->save();
             return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' creada exitosamente",'css'=>'success']);
-        }catch(throwable $th){
+        }catch(Throwable $th){
             return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' no se ha podido crear",'css'=>'danger']);
         }
     }
@@ -34,5 +40,14 @@ class MarcaController extends Controller
             'mkNombre.unique'=>'Esta marca ya existe',
             'mkNombre.min'=>'Este campo tiene un minimo de 3 caracteres',
             'mkNombre.max'=>'Este campo un maximo de 10 caracteres']);
+    }
+
+    public function edit($id){
+        $marca = Marca::find($id);
+        return view('marcaEdit',['marca'=>$marca]);
+    }
+
+    public function delete($id){
+        return "Borrando marca id: $id....";
     }
 }
