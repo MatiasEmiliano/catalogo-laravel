@@ -47,6 +47,23 @@ class MarcaController extends Controller
         return view('marcaEdit',['marca'=>$marca]);
     }
 
+    public function updated(Request $request){
+        $this->validaForm($request);
+        try{
+            $marca = Marca::find($request->idMarca);
+            $marca->mkNombre=$request->mkNombre;
+            $marca->save();
+            return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' modificada exitosamente",'css'=>'success']);
+        }catch(Throwable $th){
+            return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' no se ha podido modificar",'css'=>'danger']);
+        }
+        
+        
+        
+        
+        
+    }
+
     public function delete($id){
         return "Borrando marca id: $id....";
     }
