@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Marca;
+use App\Models\Categoria;
 use Throwable;
 use Illuminate\Support\Facades\DB;
 
@@ -12,9 +12,8 @@ class MarcaController extends Controller{
     public function index(){
         //$marcas=Marca::all();
         //$marcas=Marca::simplePaginate(3); //Paginador de 3 items
-        $marcas=Marca::paginate(3);         //PAginador de 3 items + Flechas
-
-        return view('marcas',['marcas'=>$marcas]);
+        $categorias=Categoria::paginate(3);         //PAginador de 3 items + Flechas
+        return view('categorias',['categorias'=>$categorias]);
     }
 
 
