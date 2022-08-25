@@ -30,13 +30,13 @@ Route::post('/marca/destroy',[MarcaController::class,'destroy']);
 
 //Categorias:
 Route::get('/categorias', [CategoriaController::class,'index']);
-// Route::get('/categoria/create', [CategoriaController::class,'create']);
-// Route::post('/categoria/store', [CategoriaController::class,'store']);
-// Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit']);
-// Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
-// Route::put('/categoria/updated',[CategoriaController::class,'updated']);
-// Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
-// Route::post('/categoria/destroy',[CategoriaController::class,'destroy']);
+Route::get('/categoria/create', [CategoriaController::class,'create']);
+Route::post('/categoria/store', [CategoriaController::class,'store']);
+Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit']);
+Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
+Route::put('/categoria/updated',[CategoriaController::class,'updated']);
+Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
+Route::post('/categoria/destroy',[CategoriaController::class,'destroy']);
 
 
 

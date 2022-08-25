@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 @section('contenido')
 
-    <h1>Panel de administración de marcas</h1>
+    <h1>Panel de administración de Categorias</h1>
 
     @if( session('mensaje') )
         <div class="alert alert-{{session('css')}}">
@@ -31,11 +31,11 @@
                 <span class="fs-4">{{$categoria->catNombre}}</span>
             </div>
             <div class="col text-end btn-group">
-                <a href="/marca/edit/{{$categoria->idCategoria}}" class="btn btn-outline-secondary me-1">
+                <a href="/categoria/edit/{{$categoria->idCategoria}}" class="btn btn-outline-secondary me-1">
                     <i class="bi bi-pencil-square"></i>
                     Modificar
                 </a>
-                <a href="/marca/delete/{{$categoria->idCategoria}}" class="btn btn-outline-secondary me-1">
+                <a href="/categoria/delete/{{$categoria->idCategoria}}" class="btn btn-outline-secondary me-1">
                     <i class="bi bi-trash"></i>
                     &nbsp;Eliminar&nbsp;
                 </a>
