@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
-class MarcaController extends Controller
-{
+class MarcaController extends Controller{
+
     public function index(){
         //$marcas=Marca::all();
         //$marcas=Marca::simplePaginate(3); //Paginador de 3 items
@@ -56,15 +57,26 @@ class MarcaController extends Controller
             return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' modificada exitosamente",'css'=>'success']);
         }catch(Throwable $th){
             return redirect('marcas')->with(['mensaje'=>"Marca '{$request->mkNombre}' no se ha podido modificar",'css'=>'danger']);
-        }
-        
-        
-        
-        
-        
+        }  
     }
 
     public function delete($id){
-        return "Borrando marca id: $id....";
+        $marca = Marca::find($id);
+        $prd = DB::select('SELECT * FROM productos WHERE idMarca = :idMarca', [$id]);
+        if($prd){
+            return redirect('marcas')->with(['mensaje'=>'No se puede eliminar una marca en la que existen productos','css'=>'danger']);
+        }else{
+            return view('marcaDelete',['marca'=>$marca]);
+        }  
+    }
+
+    public function destroy(Request $request){
+        try{
+           $marca = Marca::find($request->idMarca);
+           $marca->delete();
+           return redirect('marcas')->with(['mensaje'=>'Marca Eliminada Correctamente','css'=>'success']); 
+        }catch(Throwable $th){
+           return redirect('marcas')->with(['mensaje'=>'No se pudo eliminar esa marca','css'=>'danger']);
+        }    
     }
 }
