@@ -10,7 +10,7 @@
                 {{$categoria->catNombre}}
             </span>
         <form action="/categoria/destroy" method="post">
-
+            @method('delete')
             @csrf
             <input type="hidden" name="catNombre"
                    value="{{$categoria->catNombre}}">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Marca;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use App\Models\Producto;
 
 class MarcaController extends Controller{
 
@@ -61,12 +62,11 @@ class MarcaController extends Controller{
 
     public function delete($id){
         $marca = Marca::find($id);
-        $prd = DB::select('SELECT * FROM productos WHERE idMarca = :idMarca', [$id]);
-        if($prd){
-            return redirect('marcas')->with(['mensaje'=>'No se puede eliminar una marca en la que existen productos','css'=>'danger']);
-        }else{
+        if($this->checkProducto($id)==0){
             return view('marcaDelete',['marca'=>$marca]);
-        }  
+        }else{
+            return redirect('marcas')->with(['mensaje'=>'No se puede eliminar una marca en la que existen productos','css'=>'danger']);
+        }
     }
 
     public function destroy(Request $request){
@@ -77,5 +77,10 @@ class MarcaController extends Controller{
         }catch(Throwable $th){
            return redirect('marcas')->with(['mensaje'=>'No se pudo eliminar esa marca','css'=>'danger']);
         }    
+    }
+
+    private function checkProducto($id){
+        $cantidad=Producto::where('idMarca',$id)->count();
+        return $cantidad;
     }
 }

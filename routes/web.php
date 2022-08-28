@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/marca/edit/{id}',[MarcaController::class,'edit']);
 Route::get('/marca/delete/{id}',[MarcaController::class,'delete']);
 Route::put('/marca/updated',[MarcaController::class,'updated']);
 Route::get('/marca/delete/{id}',[MarcaController::class,'delete']);
-Route::post('/marca/destroy',[MarcaController::class,'destroy']);
+Route::delete('/marca/destroy',[MarcaController::class,'destroy']);
 
 //Categorias:
 Route::get('/categorias', [CategoriaController::class,'index']);
@@ -36,8 +37,10 @@ Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit']);
 Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
 Route::put('/categoria/updated',[CategoriaController::class,'updated']);
 Route::get('/categoria/delete/{id}',[CategoriaController::class,'delete']);
-Route::post('/categoria/destroy',[CategoriaController::class,'destroy']);
+Route::delete('/categoria/destroy',[CategoriaController::class,'destroy']);
 
+//Productos:
+Route::get('/productos',[ProductoController::class,'index']);
 
 
 
