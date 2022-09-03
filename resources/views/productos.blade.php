@@ -4,7 +4,7 @@
     <h1>Panel de administración de productos</h1>
 
     @if( session('mensaje') )
-        <div class="alert alert-success">
+        <div class="alert alert-{{session('css')}}">
             {{ session('mensaje') }}
         </div>
     @endif
@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col-1 text-end">
-            <a href="" class="btn btn-outline-secondary">
+            <a href="/producto/create" class="btn btn-outline-secondary">
                 <i class="bi bi-plus-square"></i>
                 Agregar
             </a>
@@ -29,16 +29,16 @@
             <img src="/imagenes/productos/{{$producto->prdImagen}}" class="img-thumbnail">
         </figure>
         <div class="col-8">
-            <h2>Nombre</h2>
+            <h2>{{$producto->prdNombre}}</h2>
             <span class="precio3">{{$producto->prdPRecio}}</span>
             <p>
-                Marca: {{$producto->idMarca}} <br>
-                Categoría: {{$producto->idCategoria}} <br>
+                Marca: {{$producto->getMarca->mkNombre}} <br>
+                Categoría: {{$producto->getCategoria->catNombre}} <br>
                 {{$producto->prdDescripcion}}
             </p>
         </div>
         <div class="col-1 d-grid d-md-block">
-            <a href="" class="btn btn-outline-secondary me-1">
+            <a href="producto/edit/{{$producto->idProducto}}" class="btn btn-outline-secondary me-1">
                 <i class="bi bi-pencil-square"></i>
                 Modificar
             </a>
